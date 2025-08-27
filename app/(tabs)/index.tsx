@@ -4,8 +4,6 @@ import { images } from "@/constants/images";
 import { Image, ScrollView, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 
-
-
 export default function App() {
   const router = useRouter();
 
@@ -23,8 +21,10 @@ export default function App() {
         ></Image>
 
         <View className="flex-1 mt-5">
-          <SearchBar onPress={() => router.push("/search")} placeholder="Search for a movie"></SearchBar>
-          
+          <SearchBar
+            onPress={() => router.push("/search")}
+            placeholder="Search for a movie"
+          ></SearchBar>
         </View>
       </ScrollView>
     </View>
