@@ -47,7 +47,7 @@ const _layout = () => {
           borderBottomWidth: 0,
 
           elevation: 0,
-          shadowOpacity: 0, 
+          shadowOpacity: 0,
         },
       }}
     >
