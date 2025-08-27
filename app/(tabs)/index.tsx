@@ -1,9 +1,26 @@
-import { Text, View } from "react-native";
+import SearchBar from "@/components/MainSearchBar";
+import { icons } from "@/constants/icons";
+import { images } from "@/constants/images";
+import { Image, ScrollView, Text, View } from "react-native";
 
 export default function App() {
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-xl font-bold text-blue-500 ">Hello world!</Text>
+    <View className="flex-1 bg-slate-950">
+      <Image source={images.bg} className=" absolute w-full z-0"></Image>
+      <ScrollView
+        className="flex-1 px-5 "
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ minHeight: "100%", paddingBottom: 10 }}
+      >
+        <Image
+          source={icons.logo}
+          className="w-12 h10 mt-20 mb-5 mx-auto"
+        ></Image>
+
+        <View className="flex-1 mt-5">
+          <SearchBar></SearchBar>
+        </View>
+      </ScrollView>
     </View>
   );
 }
