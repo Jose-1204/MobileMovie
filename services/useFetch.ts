@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-
+// fetch hook with loading, error, and reset handling
 const useFetch = <T>(fetchFunction: () => Promise<T>, autoFetch = true) => {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(autoFetch);
   const [error, setError] = useState<Error | null>(null);
 
+   // Executes the fetch function
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -17,11 +18,13 @@ const useFetch = <T>(fetchFunction: () => Promise<T>, autoFetch = true) => {
       setLoading(false);
     }
   };
+  // Resets the state
   const reset = () => {
     setData(null);
     setLoading(false);
     setError(null);
   };
+  // Auto-fetch 
   useEffect(() => {
     if (autoFetch) {
       fetchData();

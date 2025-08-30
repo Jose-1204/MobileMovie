@@ -6,7 +6,7 @@ interface Props {
   placeholder: string;
   onPress?: () => void;
 }
-
+// search bar component
 const MainSearchBar = ({ placeholder, onPress }: Props) => {
   return (
     <View className="flex-row items-center bg-slate-900 rounded-full px-5 py-4">

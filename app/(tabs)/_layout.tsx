@@ -5,8 +5,10 @@ import { images } from "@/constants/images";
 import { icons } from "@/constants/icons";
 import "../global.css";
 
+// Custom tab icon component
 const TabIcon = ({ focused, icon, title }: any) => {
   if (focused) {
+    // Highlighted tab with background and title
     return (
       <ImageBackground
         source={images.highlight}
@@ -17,12 +19,16 @@ const TabIcon = ({ focused, icon, title }: any) => {
       </ImageBackground>
     );
   }
+
+  // Default tab icon
   return (
     <View className="size-full justify-center items-center m-4 rounded-full">
       <Image source={icon} tintColor="#A8B5DB" className="size-5"></Image>
     </View>
   );
 };
+
+// Layout component with bottom tab navigation
 const _layout = () => {
   return (
     <Tabs
@@ -51,6 +57,7 @@ const _layout = () => {
         },
       }}
     >
+      {/* Home tab */}
       <Tabs.Screen
         name="index"
         options={{
@@ -61,6 +68,8 @@ const _layout = () => {
           ),
         }}
       />
+
+      {/* Search tab */}
       <Tabs.Screen
         name="search"
         options={{
@@ -71,6 +80,8 @@ const _layout = () => {
           ),
         }}
       />
+
+      {/* Saved tab */}
       <Tabs.Screen
         name="saved"
         options={{
@@ -81,6 +92,8 @@ const _layout = () => {
           ),
         }}
       />
+
+      {/* Profile tab */}
       <Tabs.Screen
         name="profile"
         options={{
