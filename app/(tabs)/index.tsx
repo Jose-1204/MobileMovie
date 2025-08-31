@@ -1,7 +1,7 @@
 import SearchBar from "@/components/MainSearchBar"; // search bar component
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
-import { ActivityIndicator, Image, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, Image, ScrollView, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import useFetch from "@/services/useFetch"; // Custom fetch hook
 import { fetchMovies } from "@/services/api";
@@ -46,6 +46,14 @@ export default function App() {
               onPress={() => router.push("/search")}
               placeholder="Search for a movie"
             ></SearchBar>
+            <>
+              <Text className="text-lg text-white font-bold mt-5 mb-3">Latest Movies</Text>
+
+              <FlatList data = {movies}
+                 renderItem={({item}) => (
+                <Text className="text"> {item.title}</Text>
+              )}> </FlatList>
+            </>
           </View>
         )}
       </ScrollView>
