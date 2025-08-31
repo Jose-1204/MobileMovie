@@ -5,7 +5,7 @@ const useFetch = <T>(fetchFunction: () => Promise<T>, autoFetch = true) => {
   const [loading, setLoading] = useState<boolean>(autoFetch);
   const [error, setError] = useState<Error | null>(null);
 
-   // Executes the fetch function
+  // Executes the fetch function
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -24,7 +24,7 @@ const useFetch = <T>(fetchFunction: () => Promise<T>, autoFetch = true) => {
     setLoading(false);
     setError(null);
   };
-  // Auto-fetch 
+  // Auto-fetch
   useEffect(() => {
     if (autoFetch) {
       fetchData();
