@@ -57,7 +57,7 @@ export default function App() {
           <>
             <Image
               source={icons.logo}
-              className="w-12 h-10 mt-20 mb-5 mx-auto"
+              className="w-20 h-16 mt-12 mb-5 mx-auto"
             />
             <SearchBar
               onPress={() => router.push("/search")}
