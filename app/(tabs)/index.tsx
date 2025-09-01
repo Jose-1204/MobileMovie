@@ -5,6 +5,7 @@ import { images } from "@/constants/images";
 import { useRouter } from "expo-router";
 import useFetch from "@/services/useFetch"; // Custom fetch hook
 import { fetchMovies } from "@/services/api";
+import MovieCard from "@/components/MovieCard";
 
 // Main app screen
 export default function App() {
@@ -36,6 +37,9 @@ export default function App() {
       <Image source={images.bg} className="absolute w-full z-0" />
       <FlatList
         data={movies}
+        renderItem={({ item }) => <MovieCard 
+        {...item}
+        />}
         keyExtractor={(item) => item.id.toString()}
         numColumns={3}
         columnWrapperStyle={{
@@ -64,9 +68,6 @@ export default function App() {
             </Text>
           </>
         }
-        renderItem={({ item }) => (
-          <Text className="text-white text-sm">{item.title}</Text>
-        )}
       />
     </View>
   );
