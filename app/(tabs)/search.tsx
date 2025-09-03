@@ -9,11 +9,10 @@ import { icons } from "@/constants/icons";
 import MainSearchBar from "@/components/MainSearchBar";
 
 const Search = () => {
-  const router = useRouter();
   const {
     data: movies,
-    loading: moviesLoading,
-    error: moviesError,
+    loading,
+    error,
   } = useFetch(() => fetchMovies({ query: "" }));
 
   return (
@@ -38,7 +37,6 @@ const Search = () => {
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <>
-            
             <View>
               <Image
                 source={icons.logo}
@@ -46,19 +44,28 @@ const Search = () => {
               ></Image>
             </View>
 
-            
             <View className="my-5">
               <MainSearchBar placeholder="Search movies ... "></MainSearchBar>
             </View>
 
             <View>
-              {moviesLoading && (
-                <ActivityIndicator size="large" color="#0000ff" className="my-3" />
+              {loading && (
+                <ActivityIndicator
+                  size="large"
+                  color="#0000ff"
+                  className="my-3"
+                />
               )}
 
-              {moviesError && (
+              {error && (
                 <Text className="text-red-500 px-5 my-3 ">
-                  Error: {moviesError.message}
+                  Error: {error.message}
+                </Text>
+              )}
+              {!loading && !error && movies?.length === 0 && (
+                <Text className="text-white px-5 my-3 ">
+                  Search Results for {""}
+                  <Text className="text-yellow-500">SEARCH TERM</Text>
                 </Text>
               )}
             </View>
