@@ -37,9 +37,7 @@ export default function App() {
       <Image source={images.bg} className="absolute w-full z-0" />
       <FlatList
         data={movies}
-        renderItem={({ item }) => <MovieCard 
-        {...item}
-        />}
+        renderItem={({ item }) => <MovieCard {...item} />}
         keyExtractor={(item) => item.id.toString()}
         numColumns={3}
         columnWrapperStyle={{
