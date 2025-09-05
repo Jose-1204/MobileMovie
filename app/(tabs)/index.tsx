@@ -58,6 +58,8 @@ export default function App() {
               className="w-20 h-16 mt-12 mb-5 mx-auto"
             />
             <SearchBar
+              value=""
+              onChangeText={() => {}}
               onPress={() => router.push("/search")}
               placeholder="Search for a movie"
             />
