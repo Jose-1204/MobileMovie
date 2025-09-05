@@ -1,5 +1,5 @@
 import { View, Image, Text, FlatList, ActivityIndicator } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { images } from "@/constants/images";
 import MovieCard from "@/components/MovieCard";
 import useFetch from "@/services/useFetch";
@@ -8,11 +8,29 @@ import { icons } from "@/constants/icons";
 import MainSearchBar from "@/components/MainSearchBar";
 
 const Search = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
   const {
     data: movies,
     loading,
     error,
-  } = useFetch(() => fetchMovies({ query: "" }));
+    refetch: loadMovies,
+    reset,
+  } = useFetch(() => fetchMovies({ query: searchQuery }));
+
+  useEffect(() => {
+  const timeoutId = setTimeout(async() =>{
+
+    if (searchQuery.trim()) {
+        await loadMovies(); 
+      } else {
+        reset(); 
+      }
+  }, 500);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
+
 
   return (
     <View className="flex-1 bg-slate-950 ">
@@ -44,7 +62,11 @@ const Search = () => {
             </View>
 
             <View className="my-5">
-              <MainSearchBar placeholder="Search movies ... "></MainSearchBar>
+              <MainSearchBar
+                placeholder="Search movies ... "
+                value={searchQuery}
+                onChangeText={(text: string) => setSearchQuery(text)}
+              ></MainSearchBar>
             </View>
 
             <View>
@@ -61,12 +83,15 @@ const Search = () => {
                   Error: {error.message}
                 </Text>
               )}
-              {!loading && !error && movies?.length === 0 && (
-                <Text className="text-white px-5 my-3 ">
-                  Search Results for {""}
-                  <Text className="text-yellow-500">SEARCH TERM</Text>
-                </Text>
-              )}
+              {!loading &&
+                !error &&
+                searchQuery.trim() &&
+                movies?.length === 0 && (
+                  <Text className="text-white px-5 my-3 ">
+                    Search Results for {""}
+                    <Text className="text-yellow-500">{searchQuery}</Text>
+                  </Text>
+                )}
             </View>
           </>
         }
