@@ -6,17 +6,26 @@ import { useRouter } from "expo-router";
 import useFetch from "@/services/useFetch"; // Custom fetch hook
 import { fetchMovies } from "@/services/api";
 import MovieCard from "@/components/MovieCard";
+import { getTrendingMovies } from "@/services/appwrite";
 
 // Main app screen
 export default function App() {
   const router = useRouter();
+
+  const {
+    data: trendingMovies,
+    loading: trendingLoading,
+    error: trendingError
+  } = useFetch(getTrendingMovies);
+
+
   const {
     data: movies,
     loading: moviesLoading,
     error: moviesError,
   } = useFetch(() => fetchMovies({ query: "" }));
 
-  if (moviesLoading) {
+  if (moviesLoading || trendingLoading) {
     return (
       <View className="flex-1 bg-slate-950 justify-center items-center">
         <ActivityIndicator size="large" color="#00ff00" />
@@ -24,7 +33,7 @@ export default function App() {
     );
   }
 
-  if (moviesError) {
+  if (moviesError || trendingError) {
     return (
       <View className="flex-1 bg-slate-950 justify-center items-center">
         <Text className="text-red-500">Error: {moviesError?.message}</Text>
