@@ -15,9 +15,8 @@ export default function App() {
   const {
     data: trendingMovies,
     loading: trendingLoading,
-    error: trendingError
+    error: trendingError,
   } = useFetch(getTrendingMovies);
-
 
   const {
     data: movies,
