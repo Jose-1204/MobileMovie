@@ -1,12 +1,16 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { icons } from "@/constants/icons";
+import { View, Text, Image } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-const Saved = () => {
+const Profile = () => {
   return (
-    <View>
-      <Text>Saved</Text>
-    </View>
+    <SafeAreaView className="bg-green-400 flex-1 px-10">
+      <View className="flex justify-center items-center flex-1 flex-col gap-5">
+        <Image source={icons.person} className="size-10" tintColor="#fff" />
+        <Text className="text-gray-900 text-base">Saved</Text>
+      </View>
+    </SafeAreaView>
   );
 };
 
-export default Saved;
+export default Profile;
